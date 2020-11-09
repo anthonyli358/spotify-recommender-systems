@@ -1,0 +1,7 @@
+# PyCharm files
+.idea/
+__pycache__/
+*.pyc
+
+# Jupyter files
+.ipynb_checkpoints/
