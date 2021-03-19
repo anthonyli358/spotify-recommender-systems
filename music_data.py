@@ -16,6 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope=scope,
 ))
 
+# Call artist and track data from API
 print("Getting top artists...")
 top_artists = offset_api_limit(sp, sp.current_user_top_artists())
 print("Getting followed artists...")
