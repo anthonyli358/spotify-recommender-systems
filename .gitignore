@@ -5,3 +5,7 @@ __pycache__/
 
 # Jupyter files
 .ipynb_checkpoints/
+
+# Spotify
+spotify/
+.cache
