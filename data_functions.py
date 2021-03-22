@@ -59,6 +59,7 @@ def get_tracks_df(tracks):
     :return: formatted pandas dataframe
     """
     tracks_df = pd.DataFrame(tracks)
+    tracks_df = tracks_df[tracks_df['is_local'] == False]  # remove local tracks (no audio data)
     if 'track' in tracks_df.columns.tolist():
         tracks_df = tracks_df.drop('track', 1).assign(**tracks_df['track'].apply(pd.Series))
     # Album
@@ -77,12 +78,16 @@ def get_tracks_df(tracks):
                       'track_number',
                       'artist_id', 'artist_name', 'album_artist_id', 'album_artist_name',
                       'album_id', 'album_name', 'album_release_date', 'album_tracks', 'album_type']
+    # saved_tracks has ['added_at', 'tracks']
     if 'added_at' in tracks_df.columns.tolist():
         select_columns.append('added_at')
+    # playlist_tracks has ['added_at', 'added_by', 'is_local', 'primary_color', 'track', 'video_thumbnail']
+    if 'added_by' in tracks_df.columns.tolist():
+        select_columns.append('added_by')
     return tracks_df[select_columns]
 
 
-def get_track_audio_df(sp, df,):
+def get_track_audio_df(sp, df, ):
     """
     Include Spotify audio features and analysis in track data.
     :param sp: Spotify OAuth
