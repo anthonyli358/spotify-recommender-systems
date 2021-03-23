@@ -38,7 +38,7 @@ def get_tracks_df(tracks):
     :return: formatted pandas dataframe
     """
     tracks_df = pd.DataFrame(tracks)
-    # Dataframe manipulation
+    # Spread track values if not yet spread to columns
     if 'track' in tracks_df.columns.tolist():
         tracks_df = tracks_df.drop('track', 1).assign(**tracks_df['track'].apply(pd.Series))
     # Album
@@ -72,12 +72,11 @@ def get_track_audio_df(sp, df):
     """
     df['genres'] = df['artist_id'].apply(lambda x: sp.artist(x)['genres'])
     df['album_genres'] = df['album_artist_id'].apply(lambda x: sp.artist(x)['genres'])
+    # Audio features
     df['audio_features'] = df['id'].apply(lambda x: sp.audio_features(x))
     df['audio_features'] = df['audio_features'].apply(pd.Series)
     df = df.drop('audio_features', 1).assign(**df['audio_features'].apply(pd.Series))
-    df['audio_analysis'] = df['id'].apply(lambda x: sp.audio_analysis(x))
-    df['audio_analysis'] = df['audio_analysis'].apply(pd.Series)
-    df = df.drop('audio_analysis', 1).assign(**df['audio_analysis'].apply(pd.Series))
+    # Don't need sp.audio_analysis(track_id) audio analysis for this project
     return df
 
 
@@ -91,9 +90,13 @@ def get_all_playlist_tracks_df(sp, sp_call):
     :return: list of tracks
     """
     playlists = sp_call
-    data = []
+    playlist_data, data = playlists['items'], []
     playlist_ids, playlist_names, playlist_tracks = [], [], []
-    for playlist in playlists['items']:
+    # Uncomment this to pull every single saved playlist (commented out here to no blow up data size)
+    # while playlists['next']:
+    #     playlist_results = sp.next(playlists)
+    #     playlist_data.extend(playlist_results['items'])
+    for playlist in playlist_data:
         for i in range(playlist['tracks']['total']):
             playlist_ids.append(playlist['id'])
             playlist_names.append(playlist['name'])
@@ -144,6 +147,6 @@ def get_recommendations(sp, tracks):
     """
     data = []
     for x in tracks:
-        results = sp.recommendations(seed_tracks=[x], limit=100)  # api limit of 100 is enough recommendations per track
+        results = sp.recommendations(seed_tracks=[x])  # default api limit of 20 is enough
         data.extend(results['tracks'])
     return data
