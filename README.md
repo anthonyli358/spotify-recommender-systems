@@ -6,7 +6,7 @@ Exploration implementing recommender systems using Spotify data.
 Although traditional machine learning methods can work for recommendations, the requirement for labels and a training 
 data set means we are reliant on the user to define their favourites (classification) or to accurately score songs 
 (regression). This doesn't work well as a few cases of mislabelling can greatly reduce model performance. It also means
-that when a user has a fresh account or doesn't provide any ratings then we can be stuck without training data. 
+that when a user has a fresh account or doesn't provide any ratings (cold-start problem) then we can be stuck without training data. 
 
 Recommendation systems avoid these caveats with a variety of techniques:
 
