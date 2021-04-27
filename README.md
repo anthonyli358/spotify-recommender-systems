@@ -124,7 +124,7 @@ recommendations perform the best.
 3. Create the [spotify/spotify_details.yml]([spotify/spotify_details.yml]) yaml with the Spotify APi client_id, 
 client_secret, and redirect_uri
 4. Run [music_data.py](music_data.py) to pull Spotify data to local pandas dataframes
-5. Explore the ML implementations in [recommender_playlists.ipynb](recommender_playlists.ipynb) and recommender system
+5. Explore the traditional ML implementations in [recommender_playlists.ipynb](recommender_playlists.ipynb) and recommender system
 implementations in [recommender_systems.ipynb](recommender_systems.ipynb)
 6. Enjoy the resulting playlists!
 
