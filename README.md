@@ -3,7 +3,7 @@ Exploration implementing [recommender systems](https://en.wikipedia.org/wiki/Rec
 [Spotify data](https://developer.spotify.com/documentation/web-api/).
 
 <p align="left">
-    <img src="results/final_playlist.png" alt="final_playlist" width="650"/>  
+    <img src="results/final_playlist.png?" alt="final_playlist" width="650"/>  
 </p>
 
 ## Results
