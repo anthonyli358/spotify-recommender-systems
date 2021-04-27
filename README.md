@@ -3,7 +3,7 @@ Exploration implementing [recommender systems](https://en.wikipedia.org/wiki/Rec
 [Spotify data](https://developer.spotify.com/documentation/web-api/).
 
 <p align="left">
-    <img src="results/final_playlist.png" alt="final_playlist" width="400"/>  
+    <img src="results/final_playlist.png" alt="final_playlist" width="650"/>  
 </p>
 
 ## Results
@@ -38,7 +38,7 @@ and user ratings).
 ```'recall@5': 0.09318497913769123, 'recall@10': 0.17385257301808066```
 
 <p align="left">
-    <img src="results/popularity.png" alt="popularity" width="400"/>  
+    <img src="results/popularity.png" alt="popularity" width="500"/>  
 </p>
 
 As it doesn't take user activity into account, solely recommending by popularity is a poor way to 
@@ -53,13 +53,13 @@ by a position in the vector and the value measure its relevance. The cosine simi
 user has iteracted with and those they haven't then gives a metric to recommend new tracks.
 
 <p align="left">
-    <img src="results/tfidf_tokens.png" alt="tfidf_tokens" width="200"/>  
+    <img src="results/tfidf_tokens.png" alt="tfidf_tokens" width="150"/>  
 </p>
 
 ```'recall@5': 0.9123783031988874, 'recall@10': 0.972183588317107```
 
 <p align="left">
-    <img src="results/content.png" alt="content" width="400"/>  
+    <img src="results/content.png" alt="content" width="500"/>  
 </p>
 
 A very high recall is observed as the dataset used considers each playlist (which tend to be heavily genre/mood based)
@@ -74,13 +74,13 @@ a user-item matrix into a low-dimensional representation. This yields better sca
 The items x users matrix is then used to recommend items to users based on similar user interactions.
 
 <p align="left">
-    <img src="results/matrix_factorisation.png" alt="matrix_factorisation" width="200"/>  
+    <img src="results/matrix_factorisation.png" alt="matrix_factorisation" width="400"/>  
 </p>
 
 ```'recall@5': 0.23783031988873435, 'recall@10': 0.30737134909596664```
 
 <p align="left">
-    <img src="results/collaborative.png" alt="collaborative" width="400"/>  
+    <img src="results/collaborative.png" alt="collaborative" width="500"/>  
 </p>
 
 The collaborative approach outperforms the popularity approach but is not a good as the content-based approach. It can 
@@ -95,7 +95,7 @@ approach performs better by the Top-N metric is is weighed more strongly here.
 ```'recall@5': 0.9068150208623088, 'recall@10': 0.9666203059805285```
 
 <p align="left">
-    <img src="results/hybrid.png" alt="hybrid" width="400"/>  
+    <img src="results/hybrid.png" alt="hybrid" width="500"/>  
 </p>
 
 This weighting approach has the same issue as the content-based recommender - too much weighting on genre and not
@@ -104,7 +104,7 @@ enough variety. Here the popularity approach is also now incorporated with a wei
 ```'recall@5': 0.6244784422809457, 'recall@10': 0.7343532684283728```
 
 <p align="left">
-    <img src="results/hybrid_popularity.png" alt="hybrid_popularity" width="400"/>  
+    <img src="results/hybrid_popularity.png" alt="hybrid_popularity" width="500"/>  
 </p>
 
 Even though it has a lower recall, subjectively this recommender appears to give the best recommendations in practice.
