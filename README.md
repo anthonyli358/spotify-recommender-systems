@@ -8,7 +8,7 @@ Exploration implementing [recommender systems](https://en.wikipedia.org/wiki/Rec
 
 ## Results
 
-In [recommender_playlists.ipynb](recommender_playlists.ipynb) traditional machine learning (ML) methods 
+In [recommender_playlists.ipynb](recommender_playlists.ipynb), traditional machine learning (ML) methods 
 are applied to yield recommendations based on a set of favourite playlists. In this classification the 
 [sci-kit learn](https://scikit-learn.org/stable/) implementations of 
 [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) and 
@@ -37,6 +37,10 @@ and user ratings).
 
 ```'recall@5': 0.09318497913769123, 'recall@10': 0.17385257301808066```
 
+<p align="left">
+    <img src="results/popularity.png" alt="popularity" width="400"/>  
+</p>
+
 As it doesn't take user activity into account, solely recommending by popularity is a poor way to 
 recommend tracks. However, as we will see later it is a good method to mix in for variety and to avoid the cold-start problem.
 
@@ -48,7 +52,15 @@ Here the popular [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) method i
 by a position in the vector and the value measure its relevance. The cosine similarity between tracks the 
 user has iteracted with and those they haven't then gives a metric to recommend new tracks.
 
+<p align="left">
+    <img src="results/tfidf_tokens.png" alt="tfidf_tokens" width="200"/>  
+</p>
+
 ```'recall@5': 0.9123783031988874, 'recall@10': 0.972183588317107```
+
+<p align="left">
+    <img src="results/content.png" alt="content" width="400"/>  
+</p>
 
 A very high recall is observed as the dataset used considers each playlist (which tend to be heavily genre/mood based)
 as a user. Hence the content-based recommender performs exceedingly well by the Top-N metric but fails to give much variety.
@@ -61,7 +73,15 @@ via [singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_
 a user-item matrix into a low-dimensional representation. This yields better scalability and better generalisation.
 The items x users matrix is then used to recommend items to users based on similar user interactions.
 
+<p align="left">
+    <img src="results/matrix_factorisation.png" alt="matrix_factorisation" width="200"/>  
+</p>
+
 ```'recall@5': 0.23783031988873435, 'recall@10': 0.30737134909596664```
+
+<p align="left">
+    <img src="results/collaborative.png" alt="collaborative" width="400"/>  
+</p>
 
 The collaborative approach outperforms the popularity approach but is not a good as the content-based approach. It can 
 suffer from the sparsity problem if the user set is too small or the number of interactions is too low.
@@ -74,10 +94,18 @@ approach performs better by the Top-N metric is is weighed more strongly here.
 
 ```'recall@5': 0.9068150208623088, 'recall@10': 0.9666203059805285```
 
+<p align="left">
+    <img src="results/hybrid.png" alt="hybrid" width="400"/>  
+</p>
+
 This weighting approach has the same issue as the content-based recommender - too much weighting on genre and not
 enough variety. Here the popularity approach is also now incorporated with a weighting to give a hybrid + popularity recommender. 
 
 ```'recall@5': 0.6244784422809457, 'recall@10': 0.7343532684283728```
+
+<p align="left">
+    <img src="results/hybrid_popularity.png" alt="hybrid_popularity" width="400"/>  
+</p>
 
 Even though it has a lower recall, subjectively this recommender appears to give the best recommendations in practice.
 It may therefore be better to incorporate other evaluation metrics such as one that measures variety, 
@@ -111,7 +139,7 @@ ML techniques
  of popularity, content-based, collaborative, and hybrid recommendation system approaches. Made with reference to
  [recommender-systems-in-python-101 on Kaggle](https://www.kaggle.com/gspmoreira/recommender-systems-in-python-101/notebook)
 
-The gitignored 'spotify' folder contains locally saved pandas dataframes from [music_data.py](music_data.py) as well as 
+The gitignore'd 'spotify' folder contains locally saved pandas dataframes from [music_data.py](music_data.py) as well as 
 Spotify API details [spotify/spotify_details.yml]([spotify/spotify_details.yml]) and playlist ids 
 [spotify/playlists.yml]([spotify/playlists.yml]) 
 
