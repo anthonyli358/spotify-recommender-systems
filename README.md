@@ -48,9 +48,10 @@ recommend tracks. However, as we will see later it is a good method to mix in fo
 
 A content-based recommender leverages attributes from items the user has interacted with to recommend similar items. 
 Here the popular [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) method is used to convert unstructured text 
-(unigrams and bigrams of genres and song/artist/album/playlist name) to vector structure, where each word is represented
-by a position in the vector and the value measure its relevance. The cosine similarity between tracks the 
-user has iteracted with and those they haven't then gives a metric to recommend new tracks.
+(unigrams and bigrams of genres and song/artist/album/playlist name) into a sparse matrix , 
+which is then summed and normalized across users to give a vector structure, where each word is represented
+by a position in the vector and the value measures its relevance. The cosine similarity between the 
+user vector and the initial matrix (all users) then gives a metric to recommend new tracks.
 
 <p align="left">
     <img src="results/tfidf_tokens.png" alt="tfidf_tokens" width="150"/>  
@@ -68,7 +69,7 @@ as a user. Hence the content-based recommender performs exceedingly well by the 
 ### Collaborative Recommender
 
 A collaborative recommender can be either memory-based (based on past user interactions) or model-based (e.g. clustering).
-Here [matrix factorization](https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)) implemented
+Here [matrix factorisation](https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)) implemented
 via [singular value decomposition (SVD)](https://en.wikipedia.org/wiki/Singular_value_decomposition) is used to compress
 a user-item matrix into a low-dimensional representation. This yields better scalability and better generalisation.
 The items x users matrix is then used to recommend items to users based on similar user interactions.
