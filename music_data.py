@@ -46,10 +46,16 @@ print("Getting, transforming, and saving playlist track data...")
 playlist_tracks_df = get_all_playlist_tracks_df(sp, sp.current_user_playlists())  # limit of 50 playlists by default
 playlist_tracks_df = get_track_audio_df(sp, playlist_tracks_df)
 playlist_tracks_df.to_pickle("spotify/playlist_tracks.pkl")
+# Create yaml dump
+playlist_dict = dict(zip(playlist_tracks_df['playlist_name'], playlist_tracks_df['playlist_id']))
+with open('spotify/playlists.yml', 'w') as outfile:
+    yaml.dump(playlist_dict, outfile, default_flow_style=False)
 
 print("Getting, transforming, and saving tracks recommendations...")
-recommendation_tracks = get_recommendations(sp, playlist_tracks_df[playlist_tracks_df['playlist_id'].isin(
-    spotify_details['recommend_playlists'])].drop_duplicates(subset='id', keep="first")['id'].tolist())
+# Define a sample playlists to yield tracks to get recommendations for, 20 recommendations per track
+recommendation_tracks = get_recommendations(sp, playlist_tracks_df[playlist_tracks_df['playlist_name'].isin(
+    ["Chill", "Chill '20", "Chill '19", "Chill '18", "Your Top Songs 2020", "Your Top Songs 2019", "Your Top Songs 2018"
+     ])].drop_duplicates(subset='id', keep="first")['id'].tolist())
 recommendation_tracks_df = get_tracks_df(recommendation_tracks)
 recommendation_tracks_df = get_track_audio_df(sp, recommendation_tracks_df)
 recommendation_tracks_df.to_pickle("spotify/recommendation_tracks.pkl")
