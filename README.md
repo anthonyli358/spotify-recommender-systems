@@ -6,6 +6,8 @@ Exploration implementing [recommender systems](https://en.wikipedia.org/wiki/Rec
     <img src="results/final_playlist.png" alt="final_playlist" width="650"/>  
 </p>
 
+**As of the [Spotify developer terms](https://developer.spotify.com/terms) version 9 (8th May 2023), you may not use any content from the API to train machine learning models or AI. I leave this repo solely for informative purposes. [Such projects used to be fine](https://community.spotify.com/t5/Spotify-for-Developers/Can-I-use-the-Audio-Features-and-Analysis-API-data-in-a-neural/m-p/5018671).**
+
 ## Results
 
 In [recommender_playlists.ipynb](recommender_playlists.ipynb), traditional machine learning (ML) methods 
