@@ -93,7 +93,7 @@ suffer from the sparsity problem if the user set is too small or the number of i
 
 A hybrid recommender combines the content-based and collaborative approaches and has been shown to perform better in 
 many studies. It avoids high variance and enables variety and weighting (e.g. genre weighting). As the content-based
-approach performs better by the Top-N metric is is weighed more strongly here.
+approach performs better by the Top-N metric it is weighed more strongly here.
 
 ```'recall@5': 0.9068150208623088, 'recall@10': 0.9666203059805285```
 
